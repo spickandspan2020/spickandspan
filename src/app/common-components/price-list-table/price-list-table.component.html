@@ -1,0 +1,59 @@
+<div class="price-list">
+  <div class="price-list-tab">
+    <div
+      class="price-list-tab-laundry tab-button "
+      [ngClass]="{
+        'tab-button-selected': tabflag.laundry,
+        'tab-button-not-selected': !tabflag.laundry
+      }"
+      (click)="tabselection('laundry')"
+    >
+      Laundry
+    </div>
+    <div
+      class="price-list-tab-iron tab-button "
+      [ngClass]="{
+        'tab-button-selected': tabflag.iron,
+        'tab-button-not-selected': !tabflag.iron
+      }"
+      (click)="tabselection('iron')"
+    >
+      Iron
+    </div>
+    <div
+      class="price-list-tab-dry-cleaning tab-button "
+      [ngClass]="{
+        'tab-button-selected': tabflag.dryclean,
+        'tab-button-not-selected': !tabflag.dryclean
+      }"
+      (click)="tabselection('dryclean')"
+    >
+      Dry Cleaning
+    </div>
+  </div>
+  <div class="price-list-table-div">
+    <table class="price-list-table">
+      <div class="price-list-table-row" *ngFor="let item of priceList">
+        <div class="price-list-table-cell-head-div">
+          <div class="price-list-table-cell-head">
+            <div class="price-list-table-cell-head-span">{{ item.header }}</div>
+          </div>
+          <div class="price-list-table-cell-head-price">
+            <mat-icon class="rupee-svg" svgIcon="rupee"></mat-icon>
+          </div>
+        </div>
+        <div
+          class="price-list-table-cell"
+          *ngFor="let subItem of item.children"
+        >
+          <div class="price-list-table-cell-text">
+            <div class="price-list-table-cell-text-span">
+              {{ subItem.title }}
+            </div>
+          </div>
+          <div class="price-list-table-cell-price">{{ subItem.price }}</div>
+        </div>
+      </div>
+    </table>
+  </div>
+</div>

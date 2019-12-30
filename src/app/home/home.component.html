@@ -1,21 +1,81 @@
-
 <div class="first-half">
-    <div class="logo">    </div>
-    <div class="details-body">
-        <div class="page-login">
-            <div class="google-login">Login with Google</div>
-            <div class="phone-div">
-              <div class="phone-input-div"> <input class="phone-input" type="text" placeholder="Enter Number"> 
-              <div>
-                <button class="phone-input-button">.</button>
-              </div>
-            </div>
+  <div class="background">
+    <mat-icon
+      class="stick-man-washing-svg"
+      svgIcon="stick-man-washing"
+    ></mat-icon>
+    <mat-icon
+      class="stick-man-drying-svg"
+      svgIcon="stick-man-drying"
+    ></mat-icon>
+    <mat-icon
+      class="stick-man-ironing-svg"
+      svgIcon="stick-man-ironing"
+    ></mat-icon>
+    <mat-icon
+      class="stick-man-pick-up-svg"
+      svgIcon="stick-man-pick-up"
+    ></mat-icon>
+    <mat-icon class="delivery-truck-svg" svgIcon="delivery-truck"></mat-icon>
+  </div>
+  <div class="logo"></div>
+  <div class="details-body">
+    <div class="page-login">
+      <div class="google-login" (click)="googleLogin()">Login with Google</div>
+      <div class="phone-div">
+        <div class="phone-input-div">
+          <div class="phone-input-91">+91</div>
+          <input
+            class="phone-input"
+            type="text"
+            placeholder="Login with Phone"
+            [(ngModel)]="phoneNumber.number"
+          />
+          <div>
+            <button class="phone-input-button" (click)="sendLoginCode()">
+              <mat-icon
+                class="right-arrow-svg"
+                svgIcon="right-arrow"
+              ></mat-icon>
+            </button>
+          </div>
         </div>
+      </div>
+      <div class="phone-code-div" *ngIf="captachaFlag">
+        <input
+          class="phone-code-input"
+          type="text"
+          placeholder="Enter the Code"
+          [(ngModel)]="verificationCode"
+        />
+        <div class="phone-code-input-button-div">
+          <button class="phone-code-input-button" (click)="verifyLoginCode()">
+            <mat-icon class="right-arrow-svg" svgIcon="right-arrow"></mat-icon>
+          </button>
         </div>
-        <div class="page-community"></div>
+        <div class="phone-code-input-cross" (click)="exitverifyLoginCode()">
+          <mat-icon class="exit-svg" svgIcon="exit"></mat-icon>
+        </div>
+      </div>
+      <div
+        [ngClass]="{
+          'captacha-enabled': phoneNumber.number != null,
+          'captacha-disbladed': phoneNumber.number == null,
+          'captacha-flag-disabled': captachaFlag
+        }"
+      >
+        <div id="recaptcha-container"></div>
+      </div>
     </div>
+    <div class="page-community">
+      <div class="page-community-button-div">
+        <mat-icon class="community-svg" svgIcon="community"></mat-icon>
+        <div class="page-community-text">Communities</div>
+      </div>
+    </div>
+  </div>
 </div>
 <app-header> </app-header>
 <div class="second-half">
-    
+  <app-price-list-table></app-price-list-table>
 </div>

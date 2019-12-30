@@ -1,0 +1,112 @@
+.price-list {
+  padding-top: 50px;
+  padding-left: 20px;
+  .price-list-tab {
+    display: flex;
+    // background: linear-gradient(to right, #ff7300 10%, rgb(208, 48, 48) 100%);
+    width: fit-content;
+    .tab-button {
+      height: 35px;
+      width: 250px;
+      border-top-left-radius: 20px;
+      text-align: center;
+      padding-top: 15px;
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+      background-color: #333333;
+      cursor: pointer;
+    }
+    .tab-button:hover {
+      background: linear-gradient(to right, #ff7300 10%, rgb(208, 48, 48) 100%);
+    }
+    .tab-button-selected {
+      background: linear-gradient(to right, #ff7300 10%, rgb(208, 48, 48) 100%);
+    }
+    .tab-button-not-selected {
+      border: solid 1px #ff7300;
+      border-bottom: none;
+    }
+  }
+  .price-list-table-div {
+    .price-list-table {
+      margin-top: -1px;
+      display: flex;
+      .price-list-table-row {
+        display: flex;
+        flex-direction: column;
+        .price-list-table-cell-head-div {
+          display: flex;
+          background: linear-gradient(
+            to right,
+            #ff7300 10%,
+            rgb(208, 48, 48) 100%
+          );
+          .price-list-table-cell-head {
+            width: 100%;
+            text-align: center;
+            padding-top: 17px;
+            font-size: 18px;
+            font-weight: 600;
+
+            .price-list-table-cell-head-span {
+              color: white;
+            }
+          }
+          .price-list-table-cell-head-price {
+            color: white;
+            padding-right: 5px;
+          }
+        }
+        .price-list-table-cell {
+          display: flex;
+          color: white;
+          width: 400px;
+          height: 40px;
+          border: solid 1px #ff7300;
+          padding: 0;
+          .price-list-table-cell-text {
+            width: 100%;
+            text-align: center;
+            padding-top: 10px;
+            font-weight: 600;
+            // .price-list-table-cell-text-border {
+            //   width: 20px;
+            //   height: 0;
+            //   border-top: solid 40px #ff7300;
+            // }
+          }
+
+          .price-list-table-cell-text::after {
+            content: "";
+            width: 0px;
+            height: 0;
+            position: relative;
+            // bottom: -32px;
+            // left: 145px;
+            bottom: -13px;
+            left: 164px;
+            border-top: 41px solid #ff7300;
+            border-left: 31px solid transparent;
+          }
+          .price-list-table-cell-price {
+            width: 50px;
+            padding-top: 10px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            background: linear-gradient(
+              to right,
+              #ff7300 10%,
+              rgb(208, 48, 48) 100%
+            );
+          }
+        }
+      }
+    }
+  }
+}
+.rupee-svg {
+  height: 50px;
+  width: 50px;
+}
