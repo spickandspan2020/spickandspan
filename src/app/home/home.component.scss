@@ -66,6 +66,16 @@
       border-right: solid 1px #ff7300;
       padding-top: 150px;
       height: 250px;
+      .phone-link {
+        font-size: 13px;
+        padding-left: 100px;
+        padding-top: 40px;
+        cursor: pointer;
+        color: #ff4800;
+      }
+      .phone-link:hover {
+        text-decoration: underline;
+      }
       .google-login {
         box-sizing: border-box;
         position: relative;
@@ -235,7 +245,7 @@
         display: flex;
         height: 40px;
         width: 200px;
-        margin-top: 180px;
+        margin-top: 120px;
         margin-left: 150px;
         line-height: 40px;
         white-space: nowrap;
@@ -259,6 +269,34 @@
           padding-left: 25px;
         }
       }
+      .page-registration-button-div {
+        display: flex;
+        height: 40px;
+        width: 200px;
+        margin-top: 40px;
+        margin-left: 150px;
+        line-height: 40px;
+        white-space: nowrap;
+        border-radius: 0.2em;
+        font-size: 18px;
+        color: #fff;
+        background: linear-gradient(
+          to right,
+          #ff7300 10%,
+          rgb(208, 48, 48) 100%
+        );
+        cursor: pointer;
+        .registration-svg {
+          height: 40px;
+          fill: white;
+          padding-left: 7px;
+          padding-right: 7px;
+          border-right: solid 1px #333333;
+        }
+        .page-registration-text {
+          padding-left: 25px;
+        }
+      }
     }
   }
 }
@@ -273,10 +311,12 @@
   margin-top: 20px;
   height: 0px;
   overflow: hidden;
+  color: #ff4800;
 }
 .captacha-enabled {
   margin-top: 20px;
   height: auto;
+  color: #ff4800;
   // overflow: hidden;
 }
 .captacha-flag-disabled {

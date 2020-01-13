@@ -14,7 +14,7 @@ export class PhoneNumber {
   // format phone numbers as E.164
   get e164() {
     const num = this.number;
-    return `+${num}`;
+    return `+91${num}`;
   }
 }
 
@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   captachaFlag: boolean;
   public captachaverifyFlag: boolean;
   test: boolean;
+  enablephoneFlag: boolean;
   constructor(
     public Auth: AuthService,
     private iconRegistry: MatIconRegistry,
@@ -75,9 +76,14 @@ export class HomeComponent implements OnInit {
       "exit",
       sanitizer.bypassSecurityTrustResourceUrl("../assets/exit.svg")
     );
+    iconRegistry.addSvgIcon(
+      "form",
+      sanitizer.bypassSecurityTrustResourceUrl("../assets/form.svg")
+    );
   }
 
   ngOnInit() {
+    this.enablephoneFlag = false;
     this.captachaverifyFlag = false;
     this.windowRef = this.win.windowRef;
     this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
@@ -107,13 +113,17 @@ export class HomeComponent implements OnInit {
       this.captachaFlag = true;
       this.Auth.sendLoginCode(this.phoneNumber.e164);
     });
-    console.log(this.captachaverifyFlag);
   }
-
   verifyLoginCode() {
     this.Auth.verifyLoginCode(this.verificationCode);
   }
   exitverifyLoginCode() {
     this.captachaFlag = false;
+  }
+  registration() {
+    this.Auth.registration();
+  }
+  enablePhone() {
+    this.enablephoneFlag = true;
   }
 }

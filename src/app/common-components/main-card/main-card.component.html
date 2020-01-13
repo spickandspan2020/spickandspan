@@ -1,0 +1,155 @@
+<div class="card-div">
+  <div class="card-head">
+    Registration Form!!
+  </div>
+  <div
+    class="registration-phone-div"
+    [ngClass]="{
+      'registration-phone-div-disabled': Auth.presentUser?.phoneNumber
+    }"
+  >
+    <div class="resgistration-phone">
+      <div class="registration-phone-input-div">
+        <input
+          class="registration-phone-input"
+          type="text"
+          placeholder="Enter Phone Number"
+          [(ngModel)]="phoneNumber.number"
+        />
+        <div class="registration-phone-button" (click)="sendLoginCode()">
+          <mat-icon class="right-arrow-svg" svgIcon="right-arrow"></mat-icon>
+        </div>
+      </div>
+      <div
+        class="registration-phone-verification-div"
+        *ngIf="captachaverifyFlag && !Auth.presentUser?.phoneNumber"
+      >
+        <div
+          class="registration-phone-verification-input-div"
+          (click)="verifyLoginCode()"
+        >
+          <input
+            class="registration-phone-verification-input"
+            placeholder="Enter Code"
+            [(ngModel)]="verificationCode"
+          />
+          <div class="registration-phone-verification-button">
+            <mat-icon class="right-arrow-svg" svgIcon="right-arrow"></mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="registration-phone-recaptcha">
+      <div id="recaptcha-container"></div>
+    </div>
+  </div>
+  <div class="phone-verified" *ngIf="Auth.presentUser?.phoneNumber">
+    Phone Number {{ Auth.presentUser?.phoneNumber }} Verified
+  </div>
+  <div class="registration-form">
+    <div class="registration-form--info">
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input">
+          <input
+            class="registration-form-input"
+            [(ngModel)]="Auth.presentUser.displayName"
+          />
+        </div>
+      </div>
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input" (click)="test2()">
+          <input
+            class="registration-form-input"
+            [(ngModel)]="Auth.presentUser.displayName"
+          />
+        </div>
+      </div>
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input">
+          <select
+            class="registration-form-input-select"
+            [(ngModel)]="presentCommunity.communityName"
+          >
+            <option *ngFor="let community of communitys" [value]="community">{{
+              community
+            }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input">
+          <select
+            class="registration-form-input-select"
+            [(ngModel)]="presentCommunity.block"
+          >
+            <option *ngFor="let block of blocks" [value]="block">{{
+              block
+            }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input">
+          <select
+            class="registration-form-input-select"
+            [(ngModel)]="presentCommunity.flat"
+          >
+            <option *ngFor="let flat of flats" [value]="flat">{{
+              flat
+            }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input">
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            [(ngModel)]="presentCommunity.gender"
+          />
+          Male<br />
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            [(ngModel)]="presentCommunity.gender"
+          />
+          Female<br />
+        </div>
+      </div>
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input">
+          <select
+            class="registration-form-input-select"
+            [(ngModel)]="presentCommunity.adults"
+          >
+            <option *ngFor="let count of counts" [value]="count">{{
+              count
+            }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input">
+          <select
+            class="registration-form-input-select-count"
+            [(ngModel)]="presentCommunity.kids"
+          >
+            <option *ngFor="let count of counts" [value]="count">{{
+              count
+            }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

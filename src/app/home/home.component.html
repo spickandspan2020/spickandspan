@@ -22,7 +22,10 @@
   <div class="details-body">
     <div class="page-login">
       <div class="google-login" (click)="googleLogin()">Login with Google</div>
-      <div class="phone-div">
+      <div class="phone-link" *ngIf="!enablephoneFlag" (click)="enablePhone()">
+        alternative phone login?
+      </div>
+      <div class="phone-div" *ngIf="enablephoneFlag">
         <div class="phone-input-div">
           <div class="phone-input-91">+91</div>
           <input
@@ -64,6 +67,7 @@
           'captacha-flag-disabled': captachaFlag
         }"
       >
+        Please Verify the captacha
         <div id="recaptcha-container"></div>
       </div>
     </div>
@@ -71,6 +75,10 @@
       <div class="page-community-button-div">
         <mat-icon class="community-svg" svgIcon="community"></mat-icon>
         <div class="page-community-text">Communities</div>
+      </div>
+      <div class="page-registration-button-div" (click)="registration()">
+        <mat-icon class="registration-svg" svgIcon="form"></mat-icon>
+        <div class="page-registration-text">Register</div>
       </div>
     </div>
   </div>
