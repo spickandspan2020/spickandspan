@@ -1,0 +1,202 @@
+.card-div {
+  z-index: 1;
+  position: fixed;
+  top: 10%;
+  left: 20%;
+  color: #163a9a;
+  height: 700px;
+  width: 50%;
+  // height: 800px;
+  // width: 100%;
+  background-color: white;
+  // border: solid 1px #163a9a;
+  margin-left: 20px;
+  // border-radius: 25px;
+  padding-top: 20px;
+  padding-left: 20px;
+  .card-head {
+    font-size: 18px;
+    font-weight: 700;
+    padding-top: 25px;
+    padding-left: 30px;
+    display: flex;
+    .registration-user-name-input {
+      width: 200px;
+      height: 25px;
+      margin-left: 20px;
+      border: none;
+      border-bottom: solid 1px #163a9a;
+      outline: none;
+      background: #eeeeee;
+      font-size: 18px;
+      color: #163a9a;
+    }
+    .registration-user-name-input::placeholder {
+      color: #163a9a;
+    }
+    .display-name-change-button {
+      padding-top: 5px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .display-name-change-button:hover {
+      text-decoration: underline;
+    }
+    .exit-button {
+      height: 24px;
+      width: 24px;
+      position: absolute;
+      right: 30px;
+      padding-top: 6px;
+      padding-left: 6px;
+      cursor: pointer;
+      border-radius: 5px;
+      .right-arrow-svg {
+        height: 18px;
+        width: 18px;
+      }
+    }
+    .exit-button:hover {
+      background-color: #163a9a;
+      .right-arrow-svg {
+        fill: white;
+      }
+    }
+  }
+  .registration-phone-div {
+    padding-top: 50px;
+    padding-left: 25px;
+    border-bottom: solid 1px #163a9a;
+    .resgistration-phone {
+      display: flex;
+      .registration-phone-input-div {
+        display: flex;
+        padding-top: 20px;
+        .registration-phone-input {
+          padding-left: 5px;
+          height: 26px;
+        }
+        .registration-phone-button {
+          width: 32px;
+          height: 32px;
+          background-color: #163a9a;
+          .right-arrow-svg {
+            padding-top: 5px;
+            padding-left: 5px;
+            color: white;
+          }
+        }
+      }
+      .registration-phone-verification-div {
+        padding-left: 20px;
+        .registration-phone-verification-input-div {
+          display: flex;
+          padding-top: 20px;
+          .registration-phone-verification-input {
+            padding-left: 5px;
+            height: 26px;
+          }
+          .registration-phone-verification-button {
+            width: 32px;
+            height: 32px;
+            background-color: #163a9a;
+            .right-arrow-svg {
+              padding-top: 5px;
+              padding-left: 5px;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .registration-phone-recaptcha {
+      padding-top: 25px;
+    }
+  }
+  .registration-phone-recaptcha-disabled {
+    display: none;
+  }
+  .registration-phone-div-disabled {
+    height: 0px;
+    border-bottom: none;
+    overflow: hidden;
+    .registration-phone-input {
+      padding-left: 5px;
+      height: 30px !important;
+      background-color: #333333;
+      border: none;
+      color: white !important;
+    }
+    // .registration-phone-button {
+    //   width: 32px;
+    //   height: 32px;
+    //   background-color: grey !important;
+    // }
+  }
+  .registration-form {
+    .registration-form-head {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 20px;
+    }
+    .registration-form-info {
+      .registration-input-div {
+        display: flex;
+        .registration-input-lable {
+          font-size: 16px;
+          color: #163a9a;
+        }
+        .registration-input {
+          .registration-form-input {
+            width: 200px;
+            height: 25px;
+            margin: 20px;
+            border: none;
+            border-bottom: solid 1px #163a9a;
+            outline: none;
+            background: #eeeeee;
+          }
+          .registration-form-input-select {
+            width: 150px;
+            height: 25px;
+            margin: 20px;
+            color: #163a9a;
+            font-size: 16px;
+            border: none;
+            border-bottom: solid 1px #163a9a;
+            outline: none;
+            background: #eeeeee;
+          }
+          .registration-form-input-select-community {
+            height: 30px;
+            width: 500px;
+            font-size: 18px;
+          }
+        }
+        .registration-input-radio-button {
+          font-size: 15px;
+          font-weight: 600;
+          padding-left: 20px;
+          display: flex;
+        }
+      }
+      .registration-submit-button {
+        width: 150px;
+        height: 30px;
+        font-size: 18px;
+        background-color: #163a9a;
+        border: none;
+        color: white;
+        margin-left: 200px;
+        margin-top: 40px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .registration-submit-button:hover {
+        color: #163a9a;
+        background-color: white;
+        border: solid 1px #163a9a;
+      }
+    }
+  }
+}

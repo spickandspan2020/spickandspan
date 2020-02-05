@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/spick-and-span",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

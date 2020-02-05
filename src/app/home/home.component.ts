@@ -83,24 +83,26 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.Auth.loadingScreen = true;
+    // this.Auth.registrationOverlayFlag = true;
     this.enablephoneFlag = false;
     this.captachaverifyFlag = false;
     this.windowRef = this.win.windowRef;
-    this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      "recaptcha-container"
-      // , // use in the future to get hte capche response
-      // {
-      //   size: "normal",
-      //   callback: function(response) {
-      //   },
-      //   "expired-callback": function() {
-      //     // Response expired. Ask user to solve reCAPTCHA again.
-      //     // ...
-      //   }
-      // }
-    );
+    // this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    //   "recaptcha-container"
+    //   // , // use in the future to get hte capche response
+    //   // {
+    //   //   size: "normal",
+    //   //   callback: function(response) {
+    //   //   },
+    //   //   "expired-callback": function() {
+    //   //     // Response expired. Ask user to solve reCAPTCHA again.
+    //   //     // ...
+    //   //   }
+    //   // }
+    // );
 
-    this.windowRef.recaptchaVerifier.render();
+    // this.windowRef.recaptchaVerifier.render();
     this.captachaFlag = false;
   }
   googleLogin() {
@@ -121,9 +123,14 @@ export class HomeComponent implements OnInit {
     this.captachaFlag = false;
   }
   registration() {
+    // this.Auth.registrationOverlayFlag = true;
     this.Auth.registration();
   }
   enablePhone() {
     this.enablephoneFlag = true;
+    this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+      "recaptcha-container"
+    );
+    this.windowRef.recaptchaVerifier.render();
   }
 }

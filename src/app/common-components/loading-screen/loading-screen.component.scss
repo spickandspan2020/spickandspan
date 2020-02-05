@@ -1,0 +1,37 @@
+.loading-svg {
+  z-index: 2;
+  position: absolute;
+  width: 240px;
+  height: 120px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.credit {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  text-align: center;
+}
+
+.credit {
+  color: #ff7300;
+  font: 800 75% "Open Sans", sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+#plug,
+#socket {
+  fill: #ff7300;
+}
+
+#loop-normal {
+  fill: none;
+  stroke: #ff7300;
+  stroke-width: 12;
+}
+#loop-offset {
+  display: none;
+}

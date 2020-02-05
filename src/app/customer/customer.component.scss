@@ -1,0 +1,52 @@
+.page {
+  height: 100vh;
+  margin: 0;
+  background-image: url("/../../../assets/background/registrationbackground.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  .left-nav-card-div {
+    padding-top: 20px;
+    width: 23%;
+    .left-nav-card {
+      margin-left: 20px;
+      // height: 600px;
+      background-color: white;
+      border: solid 1px #163a9a;
+      border-radius: 10px;
+      .head {
+        padding-top: 45px;
+        padding-left: 25px;
+        padding-bottom: 20px;
+        .head-name {
+          font-size: 18px;
+          font-weight: 700;
+          color: #163a9a;
+        }
+      }
+    }
+  }
+  .main-card-div {
+    padding-top: 20px;
+    width: 53%;
+    .main-card {
+      margin-left: 20px;
+
+      //   height: 600px;
+      //   background-color: white;
+      border-radius: 10px;
+    }
+  }
+  .right-nav-card-div {
+    padding-top: 20px;
+    width: 23%;
+    .right-nav-card {
+      margin-left: 20px;
+      height: 600px;
+      background-color: white;
+      border-radius: 10px;
+      border: solid 1px #163a9a;
+    }
+  }
+}

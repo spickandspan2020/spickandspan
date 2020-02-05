@@ -7,9 +7,17 @@ import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home.component";
 import { HeaderComponent } from "./header/header.component";
 import { PriceListTableComponent } from "../common-components/price-list-table/price-list-table.component";
+import { RegistrationCardComponent } from "../common-components/registration-card/registration-card.component";
+import { LoadingScreenComponent } from "../common-components/loading-screen/loading-screen.component";
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent, PriceListTableComponent],
+  declarations: [
+    HomeComponent,
+    HeaderComponent,
+    PriceListTableComponent,
+    RegistrationCardComponent,
+    LoadingScreenComponent
+  ],
   imports: [CommonModule, HomeRoutingModule, MatIconModule, FormsModule]
 })
 export class HomeModule {}

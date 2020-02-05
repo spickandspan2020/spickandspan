@@ -1,3 +1,26 @@
+.page {
+  background-color: #333333;
+}
+.loading-screen {
+  position: relative;
+  z-index: 2;
+  // background-color: rgba(22, 58, 154, 0.8);
+  background-color: rgba(257, 257, 257, 0.8);
+  height: 100vh;
+}
+.page-main-nav {
+  position: relative;
+  z-index: 2;
+  // background-color: rgba(22, 58, 154, 0.8);
+  background-color: rgba(257, 257, 257, 0.4);
+  height: 100vh;
+}
+.height-0 {
+  height: 0 !important;
+}
+.height-00 {
+  height: 0 !important;
+}
 .first-half {
   // background: url(./../../assets/sns3.jpg);
 

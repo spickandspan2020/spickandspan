@@ -21,8 +21,11 @@ interface User {
   photoURL?: string;
   displayName?: string;
   role?: any;
+  gender?: any;
+  communityuid?: any;
   community?: any;
   phoneNumber?: any;
+  verifiedFlag?: boolean;
 }
 @Injectable({
   providedIn: "root"
@@ -34,17 +37,22 @@ export class AuthService {
     uid: null,
     email: null,
     photoURL: null,
-    displayName: null,
+    displayName: "a",
     role: null,
+    gender: null,
+    communityuid: null,
     community: null,
     phoneNumber: null,
-    completeFlag: false
+    verifiedFlag: false
   };
+  communitiesInfo: any;
   authState: any;
   windowRef: any;
   phoneNumber: any;
   test: any; // test example
   test1: any;
+  registrationOverlayFlag: any;
+  loadingScreen: boolean;
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -52,6 +60,26 @@ export class AuthService {
     private win: WindowService
   ) {
     this.windowRef = this.win.windowRef;
+    console.log("nandu");
+    // this.Collection =
+    this.afs.firestore
+      .collection("info")
+      .get()
+      .then(data => {
+        data.forEach(doc => {
+          if (doc.id == "communities") {
+            this.communitiesInfo = doc.data().community;
+          }
+          console.log(doc.id);
+        });
+      });
+    // .subscribe(data => console.log(data.doc()));
+    // this.Collection.get().pipe(
+    //   map(data => {
+    //     console.log("aku");
+    //     console.log(data);
+    //   })
+    // );
     // verify if this is really required
     // this.user = this.afAuth.authState.pipe(
     //   switchMap(user => {
@@ -89,7 +117,7 @@ export class AuthService {
           this.presentUser = doc.data();
           if (this.presentUser) {
             if (this.presentUser.phoneNumber) {
-              this.router.navigate(["/arena/registration"]); // change to login url
+              this.router.navigate(["/customer"]); // change to login url
             } else {
               alert(
                 "Account Registered but phone number not available please Register again"
@@ -113,7 +141,6 @@ export class AuthService {
       .auth()
       .signInWithPhoneNumber(num, appVerifier)
       .then(result => {
-        console.log("test test");
         this.windowRef.confirmationResult = result;
       })
       .catch(error => console.log(error));
@@ -142,7 +169,7 @@ export class AuthService {
                 community: user.community,
                 phoneNumber: user.phoneNumber
               };
-              this.router.navigate(["/arena/registration"]); // change to login url
+              this.router.navigate(["/customer"]); // change to login url
             });
           } else {
             alert("Shamina");
@@ -156,19 +183,41 @@ export class AuthService {
 
   //Registration Start
   registration() {
+    setTimeout(
+      function() {
+        this.loadingScreen = true;
+      }.bind(this),
+      3000
+    );
+    setTimeout(
+      function() {
+        this.loadingScreen = false;
+      }.bind(this),
+      30000
+    );
     const provider = new auth.GoogleAuthProvider();
 
     return this.oAuthRegistration(provider);
   }
 
   private oAuthRegistration(provider) {
-    return this.afAuth.auth.signInWithPopup(provider).then(credential => {
-      this.RegistrationVerify(credential.user);
-      // this.updateUserData(credential.user);
-    });
+    return this.afAuth.auth
+      .signInWithPopup(provider)
+      .then(credential => {
+        this.RegistrationVerify(credential.user);
+        // this.updateUserData(credential.user);
+      })
+      .catch(
+        function(error) {
+          this.loadingScreen = false;
+          console.log("Error getting document:", error);
+        }.bind(this)
+      );
   }
 
   private RegistrationVerify(user) {
+    this.loadingScreen = true;
+
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `newuser/${user.uid}`
     );
@@ -183,13 +232,17 @@ export class AuthService {
             displayName: doc.data().displayName,
             role: doc.data().role,
             community: doc.data().community,
+            communityuid: doc.data().communityuid,
             phoneNumber: doc.data().phoneNumber
           };
           if (this.presentUser) {
-            if (this.presentUser.completeFlag) {
+            if (this.presentUser.communityuid) {
+              this.loadingScreen = false;
               alert("user Already registered");
             } else {
-              this.router.navigate(["/arena/registration"]);
+              this.loadingScreen = false;
+              this.registrationOverlayFlag = true;
+              // this.router.navigate(["/arena/registration"]);
             }
           }
         } else {
@@ -202,10 +255,13 @@ export class AuthService {
             community: user.community,
             phoneNumber: user.phoneNumber
           };
-          this.router.navigate(["/arena/registration"]);
+          this.loadingScreen = false;
+          this.registrationOverlayFlag = true;
+          // this.router.navigate(["/arena/registration"]);
         }
       })
       .catch(function(error) {
+        this.loadingScreen = false;
         console.log("Error getting document:", error);
       });
   }
@@ -278,4 +334,22 @@ export class AuthService {
       }
     );
   }
+  registrationCompleted(value: any) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `newuser/${this.presentUser.uid}`
+    );
+    this.presentUser.role = {
+      user: true,
+      technical: false,
+      admin: false
+    };
+    this.presentUser.communityuid =
+      value.communityName + value.block + value.flat;
+    this.presentUser.verifiedFlag = false;
+    this.presentUser.community = value;
+    userRef.set(this.presentUser, { merge: true });
+    this.registrationOverlayFlag = true;
+  }
+
+  // Dependency Funtions
 }

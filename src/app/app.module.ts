@@ -11,6 +11,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthService } from "./core/auth.service";
 import { environment } from "./../environments/environment";
+import { LoadingScreenComponent } from "./common-components/loading-screen/loading-screen.component";
 
 @NgModule({
   declarations: [AppComponent],

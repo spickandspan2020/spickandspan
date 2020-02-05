@@ -1,6 +1,26 @@
 <div class="card-div">
   <div class="card-head">
-    Registration Form!!
+    Hi,
+    <span *ngIf="!changeUserNameFlag">
+      {{ Auth.presentUser.displayName }}
+    </span>
+
+    <input
+      type="text"
+      class="registration-user-name-input"
+      placeholder="Your Name"
+      [(ngModel)]="Auth.presentUser.displayName"
+      *ngIf="changeUserNameFlag"
+    />
+    <a
+      class="display-name-change-button"
+      (click)="changeUserName()"
+      *ngIf="!changeUserNameFlag"
+      >change</a
+    >
+    <div class="exit-button" (click)="exit()">
+      <mat-icon class="right-arrow-svg" svgIcon="exit"></mat-icon>
+    </div>
   </div>
   <div
     class="registration-phone-div"
@@ -24,56 +44,48 @@
         class="registration-phone-verification-div"
         *ngIf="captachaverifyFlag && !Auth.presentUser?.phoneNumber"
       >
-        <div
-          class="registration-phone-verification-input-div"
-          (click)="verifyLoginCode()"
-        >
+        <div class="registration-phone-verification-input-div">
           <input
             class="registration-phone-verification-input"
             placeholder="Enter Code"
             [(ngModel)]="verificationCode"
           />
-          <div class="registration-phone-verification-button">
+          <div
+            class="registration-phone-verification-button"
+            (click)="verifyLoginCode()"
+          >
             <mat-icon class="right-arrow-svg" svgIcon="right-arrow"></mat-icon>
           </div>
         </div>
       </div>
     </div>
-    <div class="registration-phone-recaptcha">
+    <div
+      class="registration-phone-recaptcha"
+      [ngClass]="{
+        'registration-phone-recaptcha-disabled': Auth.presentUser?.phoneNumber
+      }"
+    >
       <div id="recaptcha-container"></div>
     </div>
   </div>
   <div class="phone-verified" *ngIf="Auth.presentUser?.phoneNumber">
     Phone Number {{ Auth.presentUser?.phoneNumber }} Verified
   </div>
-  <div class="registration-form">
-    <div class="registration-form--info">
-      <div class="registration-input-div">
-        <div class="registration-input-lable"></div>
-        <div class="registration-input">
-          <input
-            class="registration-form-input"
-            [(ngModel)]="Auth.presentUser.displayName"
-          />
-        </div>
-      </div>
-      <div class="registration-input-div">
-        <div class="registration-input-lable"></div>
-        <div class="registration-input" (click)="test2()">
-          <input
-            class="registration-form-input"
-            [(ngModel)]="Auth.presentUser.displayName"
-          />
-        </div>
-      </div>
+
+  <!-- registration form -->
+  <div class="registration-form" *ngIf="Auth.presentUser?.phoneNumber">
+    <br />
+    <span class="registration-form-head"> Community</span>
+    <div class="registration-form-info">
       <div class="registration-input-div">
         <div class="registration-input-lable"></div>
         <div class="registration-input">
           <select
-            class="registration-form-input-select"
+            class="registration-form-input-select registration-form-input-select-community"
             [(ngModel)]="presentCommunity.communityName"
+            (change)="communitySelected()"
           >
-            <option *ngFor="let community of communitys" [value]="community">{{
+            <option *ngFor="let community of communities" [value]="community">{{
               community
             }}</option>
           </select>
@@ -81,20 +93,21 @@
       </div>
       <div class="registration-input-div">
         <div class="registration-input-lable"></div>
-        <div class="registration-input">
+      </div>
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input" *ngIf="blocks[0]">
           <select
             class="registration-form-input-select"
             [(ngModel)]="presentCommunity.block"
+            (change)="blockSelected()"
           >
             <option *ngFor="let block of blocks" [value]="block">{{
               block
             }}</option>
           </select>
         </div>
-      </div>
-      <div class="registration-input-div">
-        <div class="registration-input-lable"></div>
-        <div class="registration-input">
+        <div class="registration-input" *ngIf="flats[0]">
           <select
             class="registration-form-input-select"
             [(ngModel)]="presentCommunity.flat"
@@ -105,26 +118,35 @@
           </select>
         </div>
       </div>
-      <div class="registration-input-div">
+      <!-- <div class="registration-input-div">
         <div class="registration-input-lable"></div>
         <div class="registration-input">
+          <input
+            class="registration-form-input"
+            [(ngModel)]="Auth.presentUser.displayName"
+          />
+        </div>
+      </div> -->
+      <div class="registration-input-div">
+        <div class="registration-input-lable"></div>
+        <div class="registration-input registration-input-radio-button">
           <input
             type="radio"
             name="gender"
             value="male"
-            [(ngModel)]="presentCommunity.gender"
+            [(ngModel)]="Auth.presentUser.gender"
           />
-          Male<br />
+          Male &nbsp;
           <input
             type="radio"
             name="gender"
             value="female"
-            [(ngModel)]="presentCommunity.gender"
+            [(ngModel)]="Auth.presentUser.gender"
           />
-          Female<br />
+          Female
         </div>
       </div>
-      <div class="registration-input-div">
+      <!-- <div class="registration-input-div">
         <div class="registration-input-lable"></div>
         <div class="registration-input">
           <select
@@ -136,20 +158,14 @@
             }}</option>
           </select>
         </div>
-      </div>
-      <div class="registration-input-div">
-        <div class="registration-input-lable"></div>
-        <div class="registration-input">
-          <select
-            class="registration-form-input-select-count"
-            [(ngModel)]="presentCommunity.kids"
-          >
-            <option *ngFor="let count of counts" [value]="count">{{
-              count
-            }}</option>
-          </select>
-        </div>
-      </div>
+      </div> -->
+      <input
+        (click)="Register()"
+        *ngIf="presentCommunity.flat"
+        class="registration-submit-button"
+        type="button"
+        value="Register"
+      />
     </div>
   </div>
 </div>
