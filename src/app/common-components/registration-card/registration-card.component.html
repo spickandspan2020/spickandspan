@@ -62,7 +62,8 @@
     <div
       class="registration-phone-recaptcha"
       [ngClass]="{
-        'registration-phone-recaptcha-disabled': Auth.presentUser?.phoneNumber
+        'registration-phone-recaptcha-disabled': Auth.recaptchaUsed,
+        'registration-phone-recaptcha-disabled-0': Auth.presentUser?.phoneNumber
       }"
     >
       <div id="recaptcha-container"></div>

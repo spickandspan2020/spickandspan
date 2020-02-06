@@ -66,6 +66,7 @@
   .registration-phone-div {
     padding-top: 50px;
     padding-left: 25px;
+    padding-bottom: 10px;
     border-bottom: solid 1px #163a9a;
     .resgistration-phone {
       display: flex;
@@ -114,6 +115,9 @@
     }
   }
   .registration-phone-recaptcha-disabled {
+    display: none;
+  }
+  .registration-phone-recaptcha-disabled-0 {
     display: none;
   }
   .registration-phone-div-disabled {

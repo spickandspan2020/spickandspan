@@ -53,6 +53,7 @@ export class AuthService {
   test1: any;
   registrationOverlayFlag: any;
   loadingScreen: boolean;
+  recaptchaUsed = false;
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -137,13 +138,19 @@ export class AuthService {
     const appVerifier = this.windowRef.recaptchaVerifier;
     const num = phoneNumber;
     this.phoneNumber = phoneNumber;
-    firebase
-      .auth()
-      .signInWithPhoneNumber(num, appVerifier)
-      .then(result => {
-        this.windowRef.confirmationResult = result;
-      })
-      .catch(error => console.log(error));
+    setTimeout(
+      function() {
+        firebase
+          .auth()
+          .signInWithPhoneNumber(num, appVerifier)
+          .then(result => {
+            this.windowRef.confirmationResult = result;
+            this.recaptchaUsed = true;
+          })
+          .catch(error => console.log(error));
+      }.bind(this),
+      1000
+    );
   }
 
   // Verification Code
@@ -309,10 +316,12 @@ export class AuthService {
             .then(function(doc) {
               if (doc.exists) {
                 userRef.set(data, { merge: true });
+                this.recaptchaUsed = false;
                 subscribe.unsubscribe();
                 console.log("Document data:", doc.data());
               } else {
                 userRef.set(data, { merge: true });
+                this.recaptchaUsed = false;
                 subscribe.unsubscribe();
               }
             })

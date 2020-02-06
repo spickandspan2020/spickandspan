@@ -92,7 +92,8 @@
           [ngClass]="{
             'captacha-enabled': phoneNumber.number != null,
             'captacha-disbladed': phoneNumber.number == null,
-            'captacha-flag-disabled': captachaFlag
+            'captacha-flag-disabled1': captachaFlag,
+            'captacha-flag-disabled': Auth.recaptchaUsed
           }"
         >
           Please Verify the captacha

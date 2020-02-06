@@ -114,6 +114,7 @@ export class RegistrationCardComponent implements OnInit {
       function() {
         if (this.Auth.presentUser.community.communityName) {
           this.Auth.registrationOverlayFlag = false;
+          this.Auth.recaptchaUsed = false;
         } else {
           alert("Re-Submit");
         }
@@ -123,6 +124,7 @@ export class RegistrationCardComponent implements OnInit {
   }
   exit() {
     this.Auth.registrationOverlayFlag = false;
+    this.Auth.recaptchaUsed = false;
     this.windowRef.recaptchaVerifier.clear();
   }
 }

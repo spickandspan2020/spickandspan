@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
   verificationCode: string;
   user: any;
   captachaFlag: boolean;
-  public captachaverifyFlag: boolean;
   test: boolean;
   enablephoneFlag: boolean;
   constructor(
@@ -86,7 +85,6 @@ export class HomeComponent implements OnInit {
     // this.Auth.loadingScreen = true;
     // this.Auth.registrationOverlayFlag = true;
     this.enablephoneFlag = false;
-    this.captachaverifyFlag = false;
     this.windowRef = this.win.windowRef;
     // this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
     //   "recaptcha-container"
@@ -111,16 +109,17 @@ export class HomeComponent implements OnInit {
 
   sendLoginCode() {
     this.windowRef.recaptchaVerifier.verify().then(result => {
-      this.captachaverifyFlag = true;
       this.captachaFlag = true;
       this.Auth.sendLoginCode(this.phoneNumber.e164);
     });
   }
   verifyLoginCode() {
     this.Auth.verifyLoginCode(this.verificationCode);
+    this.Auth.recaptchaUsed = false;
   }
   exitverifyLoginCode() {
     this.captachaFlag = false;
+    this.Auth.recaptchaUsed = false;
   }
   registration() {
     // this.Auth.registrationOverlayFlag = true;
